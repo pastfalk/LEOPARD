@@ -1,7 +1,7 @@
 LEOPARD - A dispersion solver for homogeneous plasmas with arbitrary gyrotropic velocity distributions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is a manual for the Fortran-90 code LEOPARD containing a short description of the program, an explanation of the input parameters, and some advice for the correct usage of the code. Note that this code version is adapted to the GNU Fortran Compiler (gfortran).
+This is a manual for the Fortran-90 code LEOPARD containing a short description of the program, an explanation of the input parameters, and some advice for the correct usage of the code. Note that this code version is adapted to the GNU Fortran Compiler and was tested with the compiler version gcc 6.1. For executing the code, first run 'make' and than execute './dsolve'.
 
 General remarks
 ---------------
