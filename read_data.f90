@@ -53,7 +53,7 @@ subroutine read_data(omega_start,increment,kstart,kend,nk)
      beta_para(n)=beta_para_in
      beta_perp(n)=beta_perp_in
 
-     if(mode(n).ne.2) then
+     if(mode(n).ne.1) then
         beta_ratio(n)=beta_perp(n)/beta_para(n)
      endif
      

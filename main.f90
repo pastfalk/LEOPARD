@@ -59,7 +59,7 @@ program main
      call cpu_time(finish2)
 
      write(*,'(A9,E20.10,A9,E20.10)')  '   omega:', real(solution(ik)), '   gamma:',aimag(solution(ik))
-     write(*,'(A13,F9.5)') 'time elapsed:', finish2-start2
+     write(*,*) 'time elapsed:', finish2-start2
 
 
 
@@ -85,7 +85,7 @@ program main
 
   call cpu_time(finish)
  
-  write(*,'(A19,F9.5)') 'Total time elapsed:', finish-start
+  write(*,*) 'Total time elapsed:', finish-start
  
   close(7)
 
