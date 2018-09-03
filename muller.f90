@@ -73,6 +73,7 @@ subroutine muller(omega_start,k,sol,splcoeff1,splcoeff2)
      om_old=real(omega(3))
      ga_old=aimag(omega(3))
 
+
      if(   ( ( ((om.ge.om_old).and.(abs(1.0-abs(om_old/om)).lt.rf_error)).or.&
           &    ((om.lt.om_old).and.(abs(1.0-abs(om/om_old)).lt.rf_error))).and.&
           &  ( ((ga.ge.ga_old).and.(abs(1.0-abs(ga_old/ga)).lt.rf_error)).or.&
@@ -82,7 +83,8 @@ subroutine muller(omega_start,k,sol,splcoeff1,splcoeff2)
           &  ( (abs(ga).lt.10.0**(-10)).and.(abs(ga_old).lt.10.0**(-10)))).or.&
           &( ( ((ga.ge.ga_old).and.(abs(1.0-abs(ga_old/ga)).lt.rf_error)).or.&
           &    ((ga.lt.ga_old).and.(abs(1.0-abs(ga/ga_old)).lt.rf_error))).and.&
-          &  ( (abs(om).lt.10.0**(-10)).and.(abs(om_old).lt.10.0**(-10))))) exit
+          &  ( (abs(om).lt.10.0**(-10)).and.(abs(om_old).lt.10.0**(-10)))).or.&
+          &( ( (abs(om).lt.10.0**(-10)).and.(abs(ga).lt.10.0**(-10)))    )  ) exit
 
 
      !stop iteration if last step was ineffective

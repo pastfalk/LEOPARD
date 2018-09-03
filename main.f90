@@ -49,7 +49,7 @@ program main
   do ik=1,nk
 
      write(*,*) ' '
-     write(*,'(A7,I2,A10,F12.8)') '-------',ik,'------- k=', krange(ik)
+     write(*,'(A7,I6,A10,F12.8)') '-------',ik,'------- k=', krange(ik)
 
      call cpu_time(start2)
 

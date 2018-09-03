@@ -45,7 +45,7 @@ kstart - The lower border of the wavenumber interval the user intends to investi
 
 kend   - The upper border of the wavenumber interval the user intends to investigate.
 
-nk     - Here, the user can choose the required wavenumber resolution. nk determines at how many points DSHARK will evaluate the dispersion relation within the chosen wavenumber interval.
+nk     - Here, the user can choose the required wavenumber resolution. nk determines at how many points the code will evaluate the dispersion relation within the chosen wavenumber interval.
 
 
 Note:
@@ -65,7 +65,7 @@ increment_i - The growth rate value by which the previously found root, omega(k)
 
 
 Note:
-A proper initial guess is crucial for a successive root finding. If the guess lies too far away from the dispersion branch of interest, you may land on another branch. In general, LEOPARD always converges to a certain root. It has to be figured out by the user, whether this is the root he was searching for.
+A proper initial guess is crucial for a successful root finding. If the guess lies too far away from the dispersion branch of interest, you may land on another branch. In general, LEOPARD always converges to a certain root. It has to be figured out by the user, whether this is the root he was searching for.
 
 The increments are only necessary for the initial guesses for the root finding at k(2) and k(3). For subsequent wavenumbers a quadratic polynomial approximation determines all following initial guesses. If dk is not too high, this usually works well.
 
