@@ -111,7 +111,7 @@ mode_in      - Choose '0' for a bi-Maxwellian plasma or '1' for a plasma with ar
 
 q_in         - Charge of the particles in units of the charge of the first particle species.
 
-mu_in 	     - Mass of the particles in units of the mass of the first particle species.
+mu_in 	     - Inverse mass of the particles in units of the inverse mass of the first particle species.
 
 dens_in	     - Density of the particles in units of the density of the first particle species
 
