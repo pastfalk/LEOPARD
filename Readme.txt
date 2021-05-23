@@ -130,4 +130,4 @@ When including particle species with arbitrary velocity distribution, the size o
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For more information on LEOPARD, see Astfalk & Jenko, JGR 2017. If you have further questions concerning the usage of the code or if you like to discuss some general issues, feel free to contact patrick.astfalk@ipp.mpg.de.
+For more information on LEOPARD, see Astfalk & Jenko, JGR 2017. If you have further questions concerning the usage of the code or if you like to discuss some general issues, feel free to contact patrick.astfalk@gmail.com.
