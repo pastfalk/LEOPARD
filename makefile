@@ -2,7 +2,7 @@ objects=param_mod.o main.o disp_det.o Z_func.o dZ_func.o integrator.o muller.o p
 mpfun_obj = mpfuna.o mpfunbq.o mpfunc.o mpfund.o mpfune.o mpfunf.o mpfungq2.o  mpmodule.o
 mpfun_mod = mpfuna.mod  mpfunb.mod mpfunc.mod mpfund.mod mpfune.mod mpfunf.mod mpfung.mod  mpmodule.mod
 f90comp = gfortran
-options =  -fdefault-real-8 -O3 -g -ffpe-trap=invalid -ffpe-trap=zero -ffpe-trap=overflow -ffpe-trap=denormal
+options =  -fdefault-real-8 -O3 -g -ffpe-trap=invalid -ffpe-trap=zero -ffpe-trap=overflow
 options_mp = -O3 -g
 
 dsolve: $(objects) $(mpfun_obj)
