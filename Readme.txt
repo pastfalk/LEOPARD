@@ -79,7 +79,7 @@ Nspecies - The number of particle species the user wants to include.
 
 theta 	 - The propagation angle of the waves, i.e. the angle between the wave vector k and the background magnetic field (which is aligned with the z-axis in the chosen coordinate system).
 
-delta 	 - Squared ratio of gyro frequency and plasma frequency of the first particle species.
+delta 	 - Ratio of gyro frequency and plasma frequency of the first particle species.
 
 
 Note:
