@@ -1,0 +1,50 @@
+! Relações de dispersão de altas frequências para elétrons maxwellianos
+&wavenumber
+kstart		= 0.01
+kend 	       	= 5.00
+nk 	       	= 40
+/
+
+&number_roots
+nroots= 3
+maxit= 50
+/
+
+&initial_guess
+omega_r		= 0.0
+omega_i        	= 0.0
+increment_r	= 0.000001
+increment_i    	= 0.000344
+/
+
+&setup
+set_num = 001
+Nspecies	= 2
+theta		= 0.0
+delta		= 1.41
+/
+
+&accuracy
+rf_error	= 1.0d-3
+eps_error	= 1.0d-6
+/
+
+&species
+mode_in		= 1
+q_in		= 1.0
+mu_in		= 1.0
+dens_in		= 1.0
+drift_in	= 0.0
+beta_para_in	= 1.0
+beta_perp_in	= 1.0
+/
+
+&species
+mode_in		= 1
+q_in		= -1.0
+mu_in		= 1836.0
+dens_in		= 1.0
+drift_in	= 0.0
+beta_para_in	= 1.0
+beta_perp_in	= 1.0
+/

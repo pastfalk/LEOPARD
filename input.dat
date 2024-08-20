@@ -23,7 +23,7 @@ eps_error	= 1.0d-6
 /
 
 &species
-mode_in		= 1
+mode_in		= 0
 q_in		= 1.0
 mu_in		= 1.0
 dens_in		= 1.0

@@ -1,0 +1,9 @@
+[Dolphin]
+PreviewsShown=false
+Timestamp=2023,10,26,20,24,19.586
+Version=4
+ViewMode=1
+VisibleRoles=CustomizedDetails,Details_text,Details_size,Details_modificationtime
+
+[Settings]
+HiddenFilesShown=true
