@@ -30,7 +30,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
   real :: Bes_term1, Bes_term2
 
 
-  if(vperp(iperp,iarb).eq.0.0) then
+  if(vperp(iperp,iarb)==0.0) then
      Ivpe=0.0
      return
   endif
@@ -48,7 +48,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
   call fort_Bes(n,lambda*vperp(iperp,iarb),Bes_term1,Bes_term2)
 
 
-  if ( n.ne.0) then
+  if ( n/=0) then
 
 
      !compute a prefactor required for the evaluation of the perpendicular velocity integrals
@@ -72,7 +72,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
 
         do il=1,5
 
-           if(il.ne.2) then
+           if(il/=2) then
 
               a(1)=1.0_16 *n+0.5_16
               a(2)=1.0_16 *n+il*0.5_16
@@ -80,7 +80,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
               b(2)=1.0_16 *n+(il+2)*0.5_16
               b(3)=2.0_16 *n+1.0_16
 
-              if(ndp.eq.0) then
+              if(ndp==0) then
                  call F23(a,b,-arg,nfrac,HGF(1))
               else
                  call F23_mpfun(a,b,-arg,ndp,nfrac,HGF(1))
@@ -90,8 +90,8 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
 
            else
 
-              if ((vperp(iperp,iarb).ne.0.0).and.((Bes_term1-Bes_term2).ne.0.0).and.&
-                   & ((log10(abs(0.5*vperp(iperp,iarb)**2))+log10(abs(Bes_term1-Bes_term2))).gt.-299.0)) then
+              if ((vperp(iperp,iarb)/=0.0).and.((Bes_term1-Bes_term2)/=0.0).and.&
+                   & ((log10(abs(0.5*vperp(iperp,iarb)**2))+log10(abs(Bes_term1-Bes_term2)))>-299.0)) then
 
                  Ivpe(1,2)=0.5*vperp(iperp,iarb)*vperp(iperp,iarb) *&
                       & (Bes_term1-Bes_term2)
@@ -122,7 +122,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
         b(2)=1.0_16 *n+2.0_16
         b(3)=2.0_16 *n+1.0_16
 
-        if(ndp.eq.0) then
+        if(ndp==0) then
            call F23(a,b,-arg,nfrac,HGF(1))
         else
            call F23_mpfun(a,b,-arg,ndp,nfrac,HGF(1))
@@ -136,7 +136,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
            b(2)=1.0_16 *n+(il+4)*0.5_16
            b(3)=2.0_16 *n+1.0_16
 
-           if(ndp.eq.0) then
+           if(ndp==0) then
               call F23(a,b,-arg,nfrac,HGF(2))
            else
               call F23_mpfun(a,b,-arg,ndp,nfrac,HGF(2))
@@ -148,7 +148,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
            b(2)=1.0_16 *n+(il+2)*0.5_16
            b(3)=2.0_16 *n-1.0_16
 
-           if(ndp.eq.0) then
+           if(ndp==0) then
               call F23(a,b,-arg,nfrac,HGF(3))
            else
               call F23_mpfun(a,b,-arg,ndp,nfrac,HGF(3))
@@ -160,7 +160,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
            b(2)=1.0_16 *n+(il+6)*0.5_16
            b(3)=2.0_16 *n+3.0_16
 
-           if(ndp.eq.0) then
+           if(ndp==0) then
               call F23(a,b,-arg,nfrac,HGF(4))
            else
               call F23_mpfun(a,b,-arg,ndp,nfrac,HGF(4))
@@ -188,8 +188,8 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
 
         do il=1,5
 
-           if ((vperp(iperp,iarb).ne.0.0).and.(Bes_term1.ne.0.0).and.&
-                & ((log10(abs(vperp(iperp,iarb)**il/(2*lambda)))+log10(abs(Bes_term1))).gt.-299.0)) then
+           if ((vperp(iperp,iarb)/=0.0).and.(Bes_term1/=0.0).and.&
+                & ((log10(abs(vperp(iperp,iarb)**il/(2*lambda)))+log10(abs(Bes_term1)))>-299.0)) then
 
               Ivpe(3,il)=vperp(iperp,iarb)**il/(2 *lambda)* Bes_term1-  il*Ivpe(1,il)/(2*lambda)
 
@@ -217,8 +217,8 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
 
         Ivpe(1,1)=0.0 !not needed
 
-        if ((vperp(iperp,iarb).ne.0.0).and.((Bes_term1-Bes_term2).ne.0.0).and.&
-             & ((log10(abs(0.5*vperp(iperp,iarb)*vperp(iperp,iarb)))+log10(abs(Bes_term1-Bes_term2))).gt.-299.0)) then
+        if ((vperp(iperp,iarb)/=0.0).and.((Bes_term1-Bes_term2)/=0.0).and.&
+             & ((log10(abs(0.5*vperp(iperp,iarb)*vperp(iperp,iarb)))+log10(abs(Bes_term1-Bes_term2)))>-299.0)) then
            Ivpe(1,2)= 0.5*vperp(iperp,iarb)*vperp(iperp,iarb) *&
                 &(Bes_term1-Bes_term2)  
         else
@@ -238,7 +238,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
            b(2)=1.0_16 
            b(3)=(il+2)*0.5_16 
 
-           if(ndp.eq.0) then
+           if(ndp==0) then
               call F23(a,b,-arg,nfrac,HGF(1))
            else
               call F23_mpfun(a,b,-arg,ndp,nfrac,HGF(1))
@@ -269,7 +269,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
 
         do il=1,5
 
-           if(il.ne.2) then
+           if(il/=2) then
 
               a(1)=1.5_16
               a(2)=(il+4)*0.5_16
@@ -277,7 +277,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
               b(2)=3.0_16
               b(3)=(il+6)*0.5_16
 
-              if(ndp.eq.0) then
+              if(ndp==0) then
                  call F23(a,b,-arg,nfrac,HGF(1))
               else
                  call F23_mpfun(a,b,-arg,ndp,nfrac,HGF(1))
@@ -296,7 +296,7 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
               b(1)=2.0_16
               b(2)=4.0_16
 
-              if(ndp.eq.0) then
+              if(ndp==0) then
                  call F12(a,b,-arg,nfrac,HGF(1))
               else
                  call F12_mpfun(a,b,-arg,ndp,nfrac,HGF(1))
@@ -332,8 +332,8 @@ subroutine Bessel_int(n,m,iarb,k,iperp,esc,Ivpe)
 
         do il=2,5
 
-           if ((vperp(iperp,iarb).ne.0.0).and.(Bes_term1.ne.0.0).and.&
-                & ((log10(abs(vperp(iperp,iarb)**il/(2*lambda)))+log10(abs(Bes_term1))).gt.-299.0)) then
+           if ((vperp(iperp,iarb)/=0.0).and.(Bes_term1/=0.0).and.&
+                & ((log10(abs(vperp(iperp,iarb)**il/(2*lambda)))+log10(abs(Bes_term1)))>-299.0)) then
 
               Ivpe(3,il)=vperp(iperp,iarb)**il /(2*lambda)*Bes_term1- il*1.0/(2*lambda) * Ivpe(1,il)
            else

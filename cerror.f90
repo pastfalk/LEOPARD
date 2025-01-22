@@ -49,18 +49,18 @@ subroutine cerror( z_in, cer_sol )
 
   z1 = z
 
-  if ( real (z) .lt. 0.0_16 ) then
+  if ( real (z) < 0.0_16 ) then
      z1 = - z
   end if
 
-  if ( a0 .le. 5.8_16 ) then    
+  if ( a0 <= 5.8_16 ) then    
 
      cs = z1
      cr = z1
      do k2 = 1, 120
         cr = cr * z1 * z1 / ( k2 + 0.5_16 )
         cs = cs + cr
-        if ( abs ( cr / cs ) .lt. 10.0_16**(-15) ) then
+        if ( abs ( cr / cs ) < 10.0_16**(-15) ) then
            exit
         end if
      end do
@@ -74,7 +74,7 @@ subroutine cerror( z_in, cer_sol )
      do k2 = 1, 13
         cr = -cr * ( k2 - 0.5_16 ) / ( z1 * z1 )
         cl = cl + cr
-        if ( abs ( cr / cl ) .lt. 10.0_16**(-15) ) then
+        if ( abs ( cr / cl ) < 10.0_16**(-15) ) then
            exit
         end if
      end do
@@ -83,7 +83,7 @@ subroutine cerror( z_in, cer_sol )
 
   end if
 
-  if ( real ( z) .lt. 0.0_16 ) then
+  if ( real ( z) < 0.0_16 ) then
      cer = -cer
   end if
 

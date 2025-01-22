@@ -18,7 +18,7 @@ subroutine F12(a,b,z,nfrac,F12_val)
 
   do j=nfrac,0,-1
 
-     if(j.eq.0) then
+     if(j==0) then
         sol=z *a(1)/(b(1)*b(2))/&
              & (1.0_16+sol)
      else

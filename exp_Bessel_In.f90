@@ -21,10 +21,10 @@ function exp_Bessel_In(n,z_in)
 
      old=expBes
 
-     if(abs(n).eq.j) then
+     if(abs(n)==j) then
         expBes=expBes+2.0_16 **abs(n)
 
-     else if(abs(n).gt.j) then
+     else if(abs(n)>j) then
 
         fac1=1.0_16
 
@@ -33,7 +33,7 @@ function exp_Bessel_In(n,z_in)
         enddo
         expBes=expBes+fac1*2.0_16 **abs(n)
 
-     else if(j.gt.abs(n)) then
+     else if(j>abs(n)) then
 
         fac1=1.0_16
 
@@ -46,10 +46,10 @@ function exp_Bessel_In(n,z_in)
 
      error=abs(1.0-old/expBes)
 
-     if (error.lt.10.0**(-15)) then
+     if (error<10.0**(-15)) then
         expBes=1.0_16/expBes
         exit
-     else if(expBes.gt.10.0_16**300) then
+     else if(expBes>10.0_16**300) then
         expBes=0.0_16
         exit
      endif
@@ -77,7 +77,7 @@ function exp_Bessel_In(n,z_in)
         fac2=fac2*(z*exp(-z/zfrac)/(2*(m+j)))
      enddo
 
-     if(fac1*fac1*fac2.lt.10.0_16**(-300)) then
+     if(fac1*fac1*fac2<10.0_16**(-300)) then
         cycle
      else
         old=expBes
@@ -86,7 +86,7 @@ function exp_Bessel_In(n,z_in)
 
      error=abs(1.0-old/expBes)
 
-     if (error.lt.10.0**(-15)) then
+     if (error<10.0**(-15)) then
         exit
      endif
 

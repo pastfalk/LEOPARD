@@ -203,7 +203,7 @@ interface operator (**)
    module procedure mp_expzr
 end interface
 
-interface operator (.eq.)
+interface operator (==)
   module procedure mp_eqtrr
   module procedure mp_eqtdr
   module procedure mp_eqtrd
@@ -216,7 +216,7 @@ interface operator (.eq.)
   module procedure mp_eqtzr
 end interface
 
-interface operator (.ne.)
+interface operator (/=)
   module procedure mp_netrr
   module procedure mp_netdr
   module procedure mp_netrd
@@ -229,7 +229,7 @@ interface operator (.ne.)
   module procedure mp_netzr
 end interface
 
-interface operator (.le.)
+interface operator (<=)
   module procedure mp_letrr
   module procedure mp_letdr
   module procedure mp_letrd
@@ -245,7 +245,7 @@ interface operator (.ge.)
   module procedure mp_getri
 end interface
 
-interface operator (.lt.)
+interface operator (<)
   module procedure mp_lttrr
   module procedure mp_lttdr
   module procedure mp_lttrd
@@ -253,7 +253,7 @@ interface operator (.lt.)
   module procedure mp_lttri
 end interface
 
-interface operator (.gt.)
+interface operator (>)
   module procedure mp_gttrr
   module procedure mp_gttdr
   module procedure mp_gttrd
@@ -1540,7 +1540,7 @@ contains
     mpnw = max (int (ra%mpr(1)), int (rb%mpr(1)))
     mpnw = min (mpnw, mpwds)
     call mpcpr (ra%mpr, rb%mpr, ic, mpnw) 
-    if (ic .eq. 0) then
+    if (ic == 0) then
       mp_eqtrr = .true.
     else
       mp_eqtrr = .false.
@@ -1560,7 +1560,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .eq. 0) then
+    if (ic == 0) then
       mp_eqtdr = .true.
     else
       mp_eqtdr = .false.
@@ -1580,7 +1580,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .eq. 0) then
+    if (ic == 0) then
       mp_eqtrd = .true.
     else
       mp_eqtrd = .false.
@@ -1602,7 +1602,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .eq. 0) then
+    if (ic == 0) then
       mp_eqtir = .true.
     else
       mp_eqtir = .false.
@@ -1624,7 +1624,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .eq. 0) then
+    if (ic == 0) then
       mp_eqtri = .true.
     else
       mp_eqtri = .false.
@@ -1644,7 +1644,7 @@ contains
     mpnw = min (mpnw, mpwds)
     call mpcpr (za%mpc, zb%mpc, ic1, mpnw)
     call mpcpr (za%mpc(l1), zb%mpc(l2), ic2, mpnw)
-    if (ic1 .eq. 0 .and. ic2 .eq. 0) then
+    if (ic1 == 0 .and. ic2 == 0) then
       mp_eqtzz = .true.
     else
       mp_eqtzz = .false.
@@ -1669,7 +1669,7 @@ contains
     call mpdmc40 (aimag (dca), 0, z1%mpc(l2), mpnw)
     call mpcpr (z1%mpc, zb%mpc, ic1, mpnw)
     call mpcpr (z1%mpc(l2), zb%mpc(l1), ic2, mpnw)
-    if (ic1 .eq. 0 .and. ic2 .eq. 0) then
+    if (ic1 == 0 .and. ic2 == 0) then
       mp_eqtdcz = .true.
     else
       mp_eqtdcz = .false.
@@ -1694,7 +1694,7 @@ contains
     call mpdmc40 (aimag (dcb), 0, z1%mpc(l2), mpnw)
     call mpcpr (za%mpc, z1%mpc, ic1, mpnw)
     call mpcpr (za%mpc(l1), z1%mpc(l2), ic2, mpnw)
-    if (ic1 .eq. 0 .and. ic2 .eq. 0) then
+    if (ic1 == 0 .and. ic2 == 0) then
       mp_eqtzdc = .true.
     else
       mp_eqtzdc = .false.
@@ -1713,7 +1713,7 @@ contains
     mpnw = min (mpnw, mpwds)
     call mpcpr (ra%mpr, zb%mpc, ic1, mpnw)
     ic2 = int (zb%mpc(l2+2))
-    if (ic1 .eq. 0 .and. ic2 .eq. 0) then
+    if (ic1 == 0 .and. ic2 == 0) then
       mp_eqtrz = .true.
     else
       mp_eqtrz = .false.
@@ -1732,7 +1732,7 @@ contains
     mpnw = min (mpnw, mpwds)
     call mpcpr (za%mpc, rb%mpr, ic1, mpnw)
     ic2 = int (za%mpc(l1+2))
-    if (ic1 .eq. 0 .and. ic2 .eq. 0) then
+    if (ic1 == 0 .and. ic2 == 0) then
       mp_eqtzr = .true.
     else
       mp_eqtzr = .false.
@@ -1750,7 +1750,7 @@ contains
     mpnw = max (int (ra%mpr(1)), int (rb%mpr(1)))
     mpnw = min (mpnw, mpwds)
     call mpcpr (ra%mpr, rb%mpr, ic, mpnw) 
-    if (ic .ne. 0) then
+    if (ic /= 0) then
       mp_netrr = .true.
     else
       mp_netrr = .false.
@@ -1770,7 +1770,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .ne. 0) then
+    if (ic /= 0) then
       mp_netdr = .true.
     else
       mp_netdr = .false.
@@ -1790,7 +1790,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .ne. 0) then
+    if (ic /= 0) then
       mp_netrd = .true.
     else
       mp_netrd = .false.
@@ -1812,7 +1812,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .ne. 0) then
+    if (ic /= 0) then
       mp_netir = .true.
     else
       mp_netir = .false.
@@ -1834,7 +1834,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .ne. 0) then
+    if (ic /= 0) then
       mp_netri = .true.
     else
       mp_netri = .false.
@@ -1854,7 +1854,7 @@ contains
     mpnw = min (mpnw, mpwds)
     call mpcpr (za%mpc, zb%mpc, ic1, mpnw)
     call mpcpr (za%mpc(l1), zb%mpc(l2), ic2, mpnw)
-    if (ic1 .ne. 0 .or. ic2 .ne. 0) then
+    if (ic1 /= 0 .or. ic2 /= 0) then
       mp_netzz = .true.
     else
       mp_netzz = .false.
@@ -1879,7 +1879,7 @@ contains
     call mpdmc40 (aimag (dca), 0, z1%mpc(l2), mpnw)
     call mpcpr (z1%mpc, zb%mpc, ic1, mpnw)
     call mpcpr (z1%mpc(l2), zb%mpc(l1), ic2, mpnw)
-    if (ic1 .ne. 0 .or. ic2 .ne. 0) then
+    if (ic1 /= 0 .or. ic2 /= 0) then
       mp_netdcz = .true.
     else
       mp_netdcz = .false.
@@ -1904,7 +1904,7 @@ contains
     call mpdmc40 (aimag (dcb), 0, z1%mpc(l2), mpnw)
     call mpcpr (za%mpc, z1%mpc, ic1, mpnw)
     call mpcpr (za%mpc(l1), z1%mpc(l2), ic2, mpnw)
-    if (ic1 .ne. 0 .or. ic2 .ne. 0) then
+    if (ic1 /= 0 .or. ic2 /= 0) then
       mp_netzdc = .true.
     else
       mp_netzdc = .false.
@@ -1923,7 +1923,7 @@ contains
     mpnw = min (mpnw, mpwds)
     call mpcpr (ra%mpr, zb%mpc, ic1, mpnw)
     ic2 = int (zb%mpc(l2+2))
-    if (ic1 .ne. 0 .or. ic2 .ne. 0) then
+    if (ic1 /= 0 .or. ic2 /= 0) then
       mp_netrz = .true.
     else
       mp_netrz = .false.
@@ -1942,7 +1942,7 @@ contains
     mpnw = min (mpnw, mpwds)
     call mpcpr (za%mpc, rb%mpr, ic1, mpnw)
     ic2 = int (za%mpc(l1+2))
-    if (ic1 .ne. 0 .or. ic2 .ne. 0) then
+    if (ic1 /= 0 .or. ic2 /= 0) then
       mp_netzr = .true.
     else
       mp_netzr = .false.
@@ -1960,7 +1960,7 @@ contains
     mpnw = max (int (ra%mpr(1)), int (rb%mpr(1)))
     mpnw = min (mpnw, mpwds)
     call mpcpr (ra%mpr, rb%mpr, ic, mpnw) 
-    if (ic .le. 0) then
+    if (ic <= 0) then
       mp_letrr = .true.
     else
       mp_letrr = .false.
@@ -1980,7 +1980,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .le. 0) then
+    if (ic <= 0) then
       mp_letdr = .true.
     else
       mp_letdr = .false.
@@ -2000,7 +2000,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .le. 0) then
+    if (ic <= 0) then
       mp_letrd = .true.
     else
       mp_letrd = .false.
@@ -2022,7 +2022,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .le. 0) then
+    if (ic <= 0) then
       mp_letir = .true.
     else
       mp_letir = .false.
@@ -2044,7 +2044,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .le. 0) then
+    if (ic <= 0) then
       mp_letri = .true.
     else
       mp_letri = .false.
@@ -2164,7 +2164,7 @@ contains
     mpnw = max (int (ra%mpr(1)), int (rb%mpr(1)))
     mpnw = min (mpnw, mpwds)
     call mpcpr (ra%mpr, rb%mpr, ic, mpnw) 
-    if (ic .lt. 0) then
+    if (ic < 0) then
       mp_lttrr = .true.
     else
       mp_lttrr = .false.
@@ -2184,7 +2184,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .lt. 0) then
+    if (ic < 0) then
       mp_lttdr = .true.
     else
       mp_lttdr = .false.
@@ -2204,7 +2204,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .lt. 0) then
+    if (ic < 0) then
       mp_lttrd = .true.
     else
       mp_lttrd = .false.
@@ -2226,7 +2226,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .lt. 0) then
+    if (ic < 0) then
       mp_lttir = .true.
     else
       mp_lttir = .false.
@@ -2248,7 +2248,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .lt. 0) then
+    if (ic < 0) then
       mp_lttri = .true.
     else
       mp_lttri = .false.
@@ -2266,7 +2266,7 @@ contains
     mpnw = max (int (ra%mpr(1)), int (rb%mpr(1)))
     mpnw = min (mpnw, mpwds)
     call mpcpr (ra%mpr, rb%mpr, ic, mpnw) 
-    if (ic .gt. 0) then
+    if (ic > 0) then
       mp_gttrr = .true.
     else
       mp_gttrr = .false.
@@ -2286,7 +2286,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .gt. 0) then
+    if (ic > 0) then
       mp_gttdr = .true.
     else
       mp_gttdr = .false.
@@ -2306,7 +2306,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .gt. 0) then
+    if (ic > 0) then
       mp_gttrd = .true.
     else
       mp_gttrd = .false.
@@ -2328,7 +2328,7 @@ contains
     i1 = 0
     call mpdmc40 (da, i1, r1%mpr, mpnw)
     call mpcpr (r1%mpr, rb%mpr, ic, mpnw) 
-    if (ic .gt. 0) then
+    if (ic > 0) then
       mp_gttir = .true.
     else
       mp_gttir = .false.
@@ -2350,7 +2350,7 @@ contains
     i1 = 0
     call mpdmc40 (db, i1, r1%mpr, mpnw)
     call mpcpr (ra%mpr, r1%mpr, ic, mpnw) 
-    if (ic .gt. 0) then
+    if (ic > 0) then
       mp_gttri = .true.
     else
       mp_gttri = .false.

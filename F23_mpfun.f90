@@ -26,7 +26,7 @@ subroutine F23_mpfun(a,b,z,ndp,nfrac,F23_val)
        & (mpreal(1.0_16,ndws)*(nfrac+1)+mpreal(b(3),ndws)))
 
   do j=nfrac,0,-1
-     if(j.eq.0) then
+     if(j==0) then
         sol=     mpreal(z,ndws)   *mpreal(a(1),ndws)*mpreal(a(2),ndws)&
              & /(mpreal(b(1),ndws)*mpreal(b(2),ndws)*mpreal(b(3),ndws))/&
              &  (mpreal(1.0_16,ndws)+sol)

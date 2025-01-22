@@ -672,7 +672,7 @@ endif
 
 !  Check if argument is large enough that computing with definition is faster.
 
-! if (tt .gt. mpreald (dlogb * mpnw / log (32.d0 * mpnw), mpnw)) then
+! if (tt > mpreald (dlogb * mpnw / log (32.d0 * mpnw), mpnw)) then
 
 d1 = dlogb * mpnw / log (32.d0 * mpnw)
 if (tt(2) >= 1.d0 .and. (tt(3) > 1.d0 .or. tt(3) == 0.d0 .and. tt(4) > d1)) then
@@ -752,14 +752,14 @@ do j = 0, 2 * n - 1
 
   sgn = - sgn
 
-  if (j .lt. n - 1) then
+  if (j < n - 1) then
 !    t2 = mpreal (0.d0, mpnw)
 
     t2(2) = 0.d0
     t2(3) = 0.d0
     t2(4) = 0.d0
 
-  elseif (j .eq. n - 1) then
+  elseif (j == n - 1) then
 !    t2 = mpreal (1.d0, mpnw)
 
     t2(2) = 1.d0
@@ -920,7 +920,7 @@ endif
 
 !  Check if argument is large enough that computing with definition is faster.
 
-! if (tt .gt. mpreald (dlogb * mpnw / log (32.d0 * mpnw), mpnw)) then
+! if (tt > mpreald (dlogb * mpnw / log (32.d0 * mpnw), mpnw)) then
 
 d1 = dlogb * mpnw / log (32.d0 * mpnw)
 if (tt(3) > 1.d0 .or. (tt(3) == 0.d0 .and. tt(4) > d1)) then

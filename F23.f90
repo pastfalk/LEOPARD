@@ -18,7 +18,7 @@ subroutine F23(a,b,z,nfrac,F23_val)
 
   do j=nfrac,0,-1
 
-     if(j.eq.0) then
+     if(j==0) then
         sol=z *a(1)*a(2)/(b(1)*b(2)*b(3))/&
              & (1.0_16+sol)
      else

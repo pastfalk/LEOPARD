@@ -10,7 +10,7 @@ function exp_dBessel_In(n,z)
   external exp_Bessel_In
   external exp_Bessel_In_mpfun
 
-  if(z.lt.3400.0) then
+  if(z<3400.0) then
      exp_dBessel_In=0.5*(exp_Bessel_In(n-1,z) + exp_Bessel_In(n+1,z))
   else
      exp_dBessel_In=0.5*(exp_Bessel_In_mpfun(n-1,z,40) + exp_Bessel_In_mpfun(n+1,z,40))

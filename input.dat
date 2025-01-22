@@ -6,7 +6,7 @@ nk 	       	= 48
 
 &initial_guess
 omega_r		= 0.00001
-omega_i        	= 0.0001146
+omega_i = 0.0
 increment_r	= 0.00001
 increment_i    	= 0.000344
 /

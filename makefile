@@ -1,18 +1,25 @@
-objects=param_mod.o main.o disp_det.o Z_func.o dZ_func.o integrator.o muller.o polyfit.o read_data.o read_distr.o spline_interpol.o exp_Bessel_In.o exp_dBessel_In.o cerror.o cont_frac.o Bessel_int.o int_para.o int_para_mpfun.o F12.o F12_mpfun.o F23.o F23_mpfun.o gamma_func.o acc_F.o acc_Kvpa.o get_splinecoeff.o exp_Bessel_In_mpfun.o fort_Bes.o
+# objects=param_mod.o leopard_rg.o disp_det_rg.o Z_func.o dZ_func.o integrator.o muller_rg.o polyfit.o read_data_rg.o read_distr_rg.o spline_interpol.o exp_Bessel_In.o exp_dBessel_In.o cerror.o cont_frac.o Bessel_int.o int_para.o int_para_mpfun.o F12.o F12_mpfun.o F23.o F23_mpfun.o gamma_func.o acc_F.o acc_Kvpa.o get_splinecoeff.o exp_Bessel_In_mpfun.o fort_Bes.o
+objects=param_mod.o leopardv3_mod.o leopard_rg.o disp_det_rg.o Z_func.o dZ_func.o integrator.o polyfit.o read_data_rg.o read_distr_rg.o spline_interpol.o exp_Bessel_In.o exp_dBessel_In.o cerror.o cont_frac.o Bessel_int.o int_para.o int_para_mpfun.o F12.o F12_mpfun.o F23.o F23_mpfun.o gamma_func.o acc_F.o acc_Kvpa.o get_splinecoeff.o exp_Bessel_In_mpfun.o fort_Bes.o
 mpfun_obj = mpfuna.o mpfunbq.o mpfunc.o mpfund.o mpfune.o mpfunf.o mpfungq2.o  mpmodule.o
 mpfun_mod = mpfuna.mod  mpfunb.mod mpfunc.mod mpfund.mod mpfune.mod mpfunf.mod mpfung.mod  mpmodule.mod
 f90comp = gfortran
 options =  -fdefault-real-8 -O3 -g -ffpe-trap=invalid -ffpe-trap=zero -ffpe-trap=overflow
 options_mp = -O3 -g
 
-dsolve: $(objects) $(mpfun_obj)
-	$(f90comp) -o dsolve $(options) $(objects) $(mpfun_obj)
+leopard_rg: $(objects) $(mpfun_obj)
+	$(f90comp) -o leopard_rg $(options) $(objects) $(mpfun_obj)
 
 param_mod.mod: param_mod.o param_mod.f90
 	$(f90comp) -c $(options) param_mod.f90
 
 param_mod.o: param_mod.f90
 	$(f90comp) -c $(options) param_mod.f90
+
+leopardv3_mod.mod: leopardv3_mod.o leopardv3_mod.f90
+	$(f90comp) -c $(options) leopardv3_mod.f90
+
+leopardv3_mod.o: leopardv3_mod.f90
+	$(f90comp) -c $(options) leopardv3_mod.f90
 
 mpmodule.mod: mpmodule.o mpmodule.f90
 	$(f90comp) -c $(options_mp) mpmodule.f90
@@ -62,11 +69,11 @@ mpfung.mod: mpfungq2.o mpfungq2.f90
 mpfungq2.o: mpfungq2.f90
 	$(f90comp) -c $(options_mp) mpfungq2.f90
 
-main.o: param_mod.mod main.f90
-	$(f90comp) -c $(options) main.f90
+leopard_rg.o: param_mod.mod leopard_rg.f90
+	$(f90comp) -c $(options) leopard_rg.f90
 
-disp_det.o: param_mod.mod disp_det.f90
-	$(f90comp) -c $(options) disp_det.f90
+disp_det_rg.o: param_mod.mod disp_det_rg.f90
+	$(f90comp) -c $(options) disp_det_rg.f90
 
 integrator.o: param_mod.mod integrator.f90
 	$(f90comp) -c $(options)  integrator.f90
@@ -83,14 +90,14 @@ cerror.o: param_mod.mod cerror.f90
 cont_frac.o: cont_frac.f90
 	$(f90comp) -c $(options)  cont_frac.f90
 
-muller.o: param_mod.mod muller.f90
-	$(f90comp) -c $(options)  muller.f90
+# muller_rg.o: param_mod.mod muller_rg.f90
+# 	$(f90comp) -c $(options)  muller_rg.f90
 
 polyfit.o: polyfit.f90
 	$(f90comp) -c $(options)  polyfit.f90
 
-read_data.o: param_mod.mod read_data.f90
-	$(f90comp) -c $(options)  read_data.f90
+read_data_rg.o: param_mod.mod read_data_rg.f90
+	$(f90comp) -c $(options)  read_data_rg.f90
 
 exp_Bessel_In.o: param_mod.mod  exp_Bessel_In.f90
 	$(f90comp) -c $(options)  exp_Bessel_In.f90
@@ -104,8 +111,8 @@ exp_dBessel_In.o: exp_dBessel_In.f90
 Bessel_int.o: param_mod.mod Bessel_int.f90
 	$(f90comp) -c $(options)  Bessel_int.f90
 
-read_distr.o: param_mod.mod read_distr.f90
-	$(f90comp) -c $(options)  read_distr.f90
+read_distr_rg.o: param_mod.mod read_distr_rg.f90
+	$(f90comp) -c $(options)  read_distr_rg.f90
 
 spline_interpol.o: spline_interpol.f90
 	$(f90comp) -c $(options)  spline_interpol.f90
@@ -144,8 +151,9 @@ fort_Bes.o: fort_Bes.f90
 	$(f90comp) -c $(options)  fort_Bes.f90
 
 clean:
-	rm dsolve 
+	rm leopard_rg 
 	rm param_mod.mod
+	rm leopardv3_mod.mod
 	rm $(objects)
 	rm $(mpfun_mod)
 	rm $(mpfun_obj)

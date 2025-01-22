@@ -98,7 +98,7 @@ subroutine spline_interpol (x, y, b, c, d, n)
   d(n) = d(n-1)
 
   do i=1,n
-     if(y(i).eq.0.0) then
+     if(y(i)==0.0) then
         b(i)=0.0
         c(i)=0.0
         d(i)=0.0

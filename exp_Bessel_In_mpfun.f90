@@ -21,7 +21,7 @@ function exp_Bessel_In_mpfun(n,z_in,ndp)
 
   ndws = int (ndp / mpdpw + 2)
 
-  if(n.lt.170) then
+  if(n<170) then
      expBes=mpreal(z/2.0_16,ndws)**abs(n) /mpreal(gamma_func(abs(n)+1),ndws)*exp(-mpreal(z,ndws))
   else
      write(*,*) 'n too big in gamma_func'
@@ -53,13 +53,13 @@ function exp_Bessel_In_mpfun(n,z_in,ndp)
      expBes=expBes+fac1*fac1*fac2
 
 
-     if(expBes.eq.mpreal(0.0_16,ndws)) then
+     if(expBes==mpreal(0.0_16,ndws)) then
         exit
      endif
 
      error=abs(mpreal(1.0,ndws)-old/expBes)
 
-     if (error.lt.10.0_16**(-15)) then
+     if (error<10.0_16**(-15)) then
         expBes=expBes*exp(-mpreal(z,ndws))
         exit
      endif

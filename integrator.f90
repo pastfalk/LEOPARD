@@ -49,7 +49,7 @@ subroutine integrator(omega,k,m,iarb,n,Ivpe,intgrl,splcoeff1,splcoeff2)
      !determine whether or not the parallel velocity integration requires arbitrary precision arithmetic
      call acc_Kvpa(dvpa,zeta_r,ndp)
 
-     if(ndp.eq.0) then
+     if(ndp==0) then
         call int_para(iarb,ipara,k,zeta,Kvpa_dummy)
      else
         call int_para_mpfun(iarb,ipara,ndp,k,zeta,Kvpa_dummy)

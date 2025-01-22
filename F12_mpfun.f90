@@ -26,7 +26,7 @@ subroutine F12_mpfun(a,b,z,ndp,nfrac,F12_val)
 
   do j=nfrac,0,-1
 
-     if(j.eq.0) then
+     if(j==0) then
         sol=     mpreal(z,ndws)   *mpreal(a(1),ndws)/&
              &  (mpreal(b(1),ndws)*mpreal(b(2),ndws))/&
              &  (mpreal(1.0_16,ndws)+sol)

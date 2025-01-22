@@ -61,7 +61,7 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
   do m=1,Nspecies
 
 
-     if(mode(m).eq.0) then
+     if(mode(m)==0) then
 
         !for bi-Maxwellian scenario
 
@@ -79,7 +79,7 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
 
            !compute exponentially-scaled modified Bessel functions required for the evaluation of the dielectric tensor
 
-           if(lambda.lt.3400.0) then
+           if(lambda<3400.0) then
               expBes=exp_Bessel_In(n,lambda)
            else 
               expBes=exp_Bessel_In_mpfun(n,lambda,40)
@@ -90,7 +90,7 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
            
            !compute the dielectric tensor components
 
-           if(n.eq.0) then
+           if(n==0) then
               zeta1=(omega-k*cos(theta)*drift(m))/sqrt(beta_para(m))/(k*cos(theta))/sqrt(mu(m)) *sqrt(dens(m))
 
               epsilon_yy = epsilon_yy - sqrt(mu(m)) *dens(m)**1.5 * q(m)**2 / sqrt(beta_para(m)) / (k*cos(theta)) *&
@@ -119,8 +119,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & n**2 *expBes / lambda *(beta_ratio(m) * (omega-k*cos(theta)*drift(m)) + &
                       & (beta_ratio(m)-1.0)*n*mu(m)*q(m))*Z_func(zeta2)
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_xx)/ real(epsilon_xx)).gt.eps_error).or. &
-                      & (abs(aimag(del_xx)/aimag(epsilon_xx)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_xx)/ real(epsilon_xx))>eps_error).or. &
+                      & (abs(aimag(del_xx)/aimag(epsilon_xx))>eps_error)))) then
 
                     epsilon_xx=epsilon_xx+ del_xx
 
@@ -140,8 +140,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & (n**2 * expBes / lambda - 2*lambda*(expdBes-expBes)) *&
                       & (beta_ratio(m)*(omega-k*cos(theta)*drift(m)) + (beta_ratio(m)-1.0)*n*mu(m)*q(m))*Z_func(zeta2)
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_yy)/ real(epsilon_yy)).gt.eps_error).or. &
-                      & (abs(aimag(del_yy)/aimag(epsilon_yy)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_yy)/ real(epsilon_yy))>eps_error).or. &
+                      & (abs(aimag(del_yy)/aimag(epsilon_yy))>eps_error)))) then
 
                     epsilon_yy=epsilon_yy+ del_yy
 
@@ -165,8 +165,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       &      k*cos(theta)*drift(m)*n*mu(m)*q(m) * dZ_func(zeta2)  +&
                       &     2*n*q(m)*sqrt(mu(m)*dens(m)/beta_para(m))*k*cos(theta)*drift(m)**2 *Z_func(zeta2))
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_zz)/ real(epsilon_zz)).gt.eps_error).or. &
-                      & (abs(aimag(del_zz)/aimag(epsilon_zz)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_zz)/ real(epsilon_zz))>eps_error).or. &
+                      & (abs(aimag(del_zz)/aimag(epsilon_zz))>eps_error)))) then
 
                     epsilon_zz=epsilon_zz+ del_zz
 
@@ -187,8 +187,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & (expdBes-expBes) *(beta_ratio(m) *(omega-k*cos(theta)*drift(m))+&
                       & (beta_ratio(m) -1.0)*n*mu(m)*q(m))* Z_func(zeta2)
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_xy)/ real(epsilon_xy)).gt.eps_error).or. &
-                      & (abs(aimag(del_xy)/aimag(epsilon_xy)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_xy)/ real(epsilon_xy))>eps_error).or. &
+                      & (abs(aimag(del_xy)/aimag(epsilon_xy))>eps_error)))) then
 
                     epsilon_xy=epsilon_xy+ del_xy
 
@@ -210,8 +210,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & (    (beta_ratio(m) * omega+n*mu(m)*q(m)*(beta_ratio(m)-1.0))*dZ_func(zeta2)+&           
                       &     2*n*sqrt(dens(m)*mu(m)/beta_para(m))*q(m)*drift(m)*Z_func(zeta2) )
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_xz)/ real(epsilon_xz)).gt.eps_error).or. &
-                      & (abs(aimag(del_xz)/aimag(epsilon_xz)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_xz)/ real(epsilon_xz))>eps_error).or. &
+                      & (abs(aimag(del_xz)/aimag(epsilon_xz))>eps_error)))) then
 
                     epsilon_xz=epsilon_xz+ del_xz
 
@@ -233,8 +233,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       &  (   (beta_ratio(m)*omega+n*mu(m)*q(m)*(beta_ratio(m)-1.0)) *dZ_func(zeta2)+&
                       &     2*n*sqrt(dens(m)*mu(m)/beta_para(m))*q(m)*drift(m)*Z_func(zeta2) )
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_yz)/ real(epsilon_yz)).gt.eps_error).or. &
-                      & (abs(aimag(del_yz)/aimag(epsilon_yz)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_yz)/ real(epsilon_yz))>eps_error).or. &
+                      & (abs(aimag(del_yz)/aimag(epsilon_yz))>eps_error)))) then
 
                     epsilon_yz=epsilon_yz+ del_yz
 
@@ -251,7 +251,7 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
         enddo
 
 
-     else if(mode(m).eq.1) then
+     else if(mode(m)==1) then
    
        !for particles with arbitrary gyrotropic velocity distributions
 
@@ -299,7 +299,7 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
 
            call integrator(omega,k,m,iarb,n,Ivpe,intgrl,splcoeff1(:,:,:,:,iarb),splcoeff2(:,:,:,:,iarb))
 
-           if(n.ne.0) then
+           if(n/=0) then
               call integrator(omega,k,m,iarb,-n,Ivpe,intgrl2,splcoeff1(:,:,:,:,iarb),splcoeff2(:,:,:,:,iarb))
            endif
 
@@ -307,7 +307,7 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
 
            !compute dielectric tensor components
 
-           if (n.eq.0) then
+           if (n==0) then
 
               epsilon_xx=epsilon_xx+ &
                    & 2*pi *mu(m)**3 *q(m)**4 *&
@@ -361,8 +361,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       &    (k*cos(theta))/omega*intgrl2(1,1,2,2))
 
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_xx)/ real(epsilon_xx)).gt.eps_error).or. &
-                      & (abs(aimag(del_xx)/aimag(epsilon_xx)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_xx)/ real(epsilon_xx))>eps_error).or. &
+                      & (abs(aimag(del_xx)/aimag(epsilon_xx))>eps_error)))) then
 
                     epsilon_xx=epsilon_xx+ del_xx
 
@@ -383,8 +383,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & (k*cos(theta))/omega*intgrl2(2,1,2,2))
 
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_yy)/ real(epsilon_yy)).gt.eps_error).or. &
-                      & (abs(aimag(del_yy)/aimag(epsilon_yy)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_yy)/ real(epsilon_yy))>eps_error).or. &
+                      & (abs(aimag(del_yy)/aimag(epsilon_yy))>eps_error)))) then
                     epsilon_yy=epsilon_yy+ del_yy
                  else
                     esc(2)=.false.
@@ -401,8 +401,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & n*mu(m)*q(m)/omega*intgrl2(1,3,1,1))
 
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_zz)/ real(epsilon_zz)).gt.eps_error).or. &
-                      & (abs(aimag(del_zz)/aimag(epsilon_zz)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_zz)/ real(epsilon_zz))>eps_error).or. &
+                      & (abs(aimag(del_zz)/aimag(epsilon_zz))>eps_error)))) then
                     epsilon_zz=epsilon_zz+ del_zz
                  else
                     esc(3)=.false.
@@ -422,8 +422,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       &    (k*cos(theta))/omega*intgrl2(3,2,1,1)+&
                       &    (k*cos(theta))/omega*intgrl2(3,1,2,2)) 
 
-                 if((n.le.4).or.((n.gt.4).and.((abs( real(del_xy)/ real(epsilon_xy)).gt.eps_error).or. &
-                      & (abs(aimag(del_xy)/aimag(epsilon_xy)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs( real(del_xy)/ real(epsilon_xy))>eps_error).or. &
+                      & (abs(aimag(del_xy)/aimag(epsilon_xy))>eps_error)))) then
                     epsilon_xy=epsilon_xy+ del_xy
                  else
                     esc(4)=.false.
@@ -441,8 +441,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & (  (1+n*mu(m)*q(m)/omega)*intgrl2(1,1,2,2)-&
                       & n*mu(m)*q(m)/omega*intgrl2(1,2,1,1))
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_xz)/ real(epsilon_xz)).gt.eps_error).or. &
-                      & (abs(aimag(del_xz)/aimag(epsilon_xz)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_xz)/ real(epsilon_xz))>eps_error).or. &
+                      & (abs(aimag(del_xz)/aimag(epsilon_xz))>eps_error)))) then
                     epsilon_xz=epsilon_xz+ del_xz
                  else
                     esc(5)=.false.
@@ -458,8 +458,8 @@ function disp_det(omega,k,splcoeff1,splcoeff2)
                       & (  (1+n*mu(m)*q(m)/omega)*intgrl2(3,1,2,2)-&
                       & n*mu(m)*q(m)/omega*intgrl2(3,2,1,1))
 
-                 if((n.le.4).or.((n.gt.4).and.((abs(real(del_yz)/ real(epsilon_yz)).gt.eps_error).or. &
-                      & (abs(aimag(del_yz)/aimag(epsilon_yz)).gt.eps_error)))) then
+                 if((n<=4).or.((n>4).and.((abs(real(del_yz)/ real(epsilon_yz))>eps_error).or. &
+                      & (abs(aimag(del_yz)/aimag(epsilon_yz))>eps_error)))) then
                     epsilon_yz=epsilon_yz+ del_yz
                  else
                     esc(6)=.false.

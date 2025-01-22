@@ -28,11 +28,11 @@ subroutine int_para(iarb,ipara,k,zeta,Kvpa)
 
   !account for poles that lie within the integration interval
   !according to Landau's prescription
-  if((vpa2.ge.real(zeta)).and.(vpa1.lt.real(zeta))) then
+  if((vpa2.ge.real(zeta)).and.(vpa1<real(zeta))) then
 
-     if(aimag(zeta).gt.0.0) then
+     if(aimag(zeta)>0.0) then
         sigma=0
-     else if(aimag(zeta).eq.0.0) then
+     else if(aimag(zeta)==0.0) then
         sigma=1
      else
         sigma=2

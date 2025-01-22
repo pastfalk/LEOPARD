@@ -53,11 +53,11 @@ subroutine int_para_mpfun(iarb,ipara,ndp,k,zeta,Kvpa)
 
   !account for poles that lie within the integration interval
   !according to Landau's prescription
-  if((vpara(ipara+1,iarb).ge.real(zeta)).and.(vpara(ipara,iarb).lt.real(zeta))) then
+  if((vpara(ipara+1,iarb).ge.real(zeta)).and.(vpara(ipara,iarb)<real(zeta))) then
 
-     if(aimag(zeta).eq.0.0) then
+     if(aimag(zeta)==0.0) then
 
-        if(k.gt.0.0) then
+        if(k>0.0) then
 
            sol(1)=sol(1)+mpcmplx(cmplx(0.0_16,aimag(i)),ndws)*mpreald(pi,ndws)
            sol(2)=sol(2)+mpcmplx(cmplx(0.0_16,aimag(i)),ndws)*mpreald(pi,ndws)*zeta_mp
@@ -83,9 +83,9 @@ subroutine int_para_mpfun(iarb,ipara,ndp,k,zeta,Kvpa)
 
         endif
    
-     else if(aimag(zeta).lt.0.0) then
+     else if(aimag(zeta)<0.0) then
 
-        if(k.gt.0.0) then
+        if(k>0.0) then
 
            sol(1)=sol(1)+mpcmplx(cmplx(0.0_16,aimag(i)),ndws)*mpreald(2*pi,ndws)
            sol(2)=sol(2)+mpcmplx(cmplx(0.0_16,aimag(i)),ndws)*mpreald(2*pi,ndws)*zeta_mp

@@ -862,7 +862,7 @@ do i = 1, ln1
       write (6, 2) line1(i:i)
 2     format ('*** MPINP: Invalid input character = ',a)
       call mpabrt (87)
-  elseif (line1(i:i) .ne. ' ') then
+  elseif (line1(i:i) /= ' ') then
     if (lnc1 < lncx) then
       lnc1 = lnc1 + 1
       chr1(i) = line1(i:i)

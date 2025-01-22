@@ -92,7 +92,7 @@ do j = 1, itrmx
 
 !   Check for convergence.
 
-  if (s0(2) .eq. 0.d0 .or. s0(3) < 1.d0 - mpnw1) goto 100
+  if (s0(2) == 0.d0 .or. s0(3) < 1.d0 - mpnw1) goto 100
 enddo
 
 write (mpldb, 2)
@@ -161,7 +161,7 @@ s5(0) = mpnw + 7
 
 !   Check if both X and Y are zero.
 
-if (nx .eq. 0 .and. ny .eq. 0) then
+if (nx == 0 .and. ny == 0) then
   write (mpldb, 2)
 2 format ('*** MPANG: Both arguments are zero.')
   call mpabrt (7)
@@ -185,16 +185,16 @@ endif
 
 !   Check if one of X or Y is zero.
 
-if (nx .eq. 0) then
+if (nx == 0) then
   call mpeq (mppicon, s0, mpnw1)
-  if (iy .gt. 0) then
+  if (iy > 0) then
     call mpmuld (s0, 0.5d0, a, mpnw) 
   else
     call mpmuld (s0, -0.5d0, a, mpnw) 
   endif
   goto 120
-elseif (ny .eq. 0) then
-  if (ix .gt. 0) then
+elseif (ny == 0) then
+  if (ix > 0) then
     a(1) = mpnw
     a(2) = 0.d0
     a(3) = 0.d0
@@ -233,7 +233,7 @@ call mpdmc (t3, 0, s5, mpnw1)
 !   This selects the Newton iteration (of the two listed above) that has the
 !   largest denominator.
 
-if (abs (t1) .le. abs (t2)) then
+if (abs (t1) <= abs (t2)) then
   kk = 1
   call mpeq (s1, s0, mpnw1) 
 else
@@ -254,7 +254,7 @@ do k = 1, mq
 
   call mpcssnr (s5, s1, s2, mpnw1) 
 
-  if (kk .eq. 1) then
+  if (kk == 1) then
     call mpsub (s0, s1, s3, mpnw1) 
     call mpdiv (s3, s2, s4, mpnw1) 
     call mpsub (s5, s4, s1, mpnw1) 
@@ -371,8 +371,8 @@ do j = 1, itrmx
 
 !   Check for convergence.
 
-  if ((s0(2) .eq. 0.d0 .or. s0(3) < 1.d0 - mpnw1) .and. &
-    (s0(mp7+2) .eq. 0.d0 .or. s0(mp7+3) < 1.d0 - mpnw1)) goto 100
+  if ((s0(2) == 0.d0 .or. s0(3) < 1.d0 - mpnw1) .and. &
+    (s0(mp7+2) == 0.d0 .or. s0(mp7+3) < 1.d0 - mpnw1)) goto 100
 enddo
 
 write (mpldb, 2)
@@ -624,7 +624,7 @@ do k = 0, mq
   call mpcmul (s3, s1, s2, mpnw1) 
   call mpcadd (s3, s2, s1, mpnw1) 
   call mpceq (s1, s3, mpnw1)
-  if (k .eq. mq - nit .and. iq .eq. 0) then
+  if (k == mq - nit .and. iq == 0) then
     iq = 1
     goto 100
   endif
@@ -740,7 +740,7 @@ na1 = min (int (abs (a(2))), mpnw)
 ia2 = sign (1.d0, a(la+2))
 na2 = min (int (abs (a(la+2))), mpnw)
 
-if (na1 .eq. 0 .and. na2 .eq. 0) then
+if (na1 == 0 .and. na2 == 0) then
   write (mpldb, 2)
 2 format ('*** MPCLOGX: Argument is zero.')
   call mpabrt (50)
@@ -1055,7 +1055,7 @@ if (s0(3) < -1.d0) then
 !   Check for convergence of the series, and adjust working precision
 !   for the next term.
 
-    if (s1(2) .eq. 0.d0 .or. s1(3) < s0(3) - mpnw1) goto 110
+    if (s1(2) == 0.d0 .or. s1(3) < s0(3) - mpnw1) goto 110
     mpnw2 = min (max (mpnw1 + int (s1(3) - s0(3)) + 1, 4), mpnw1)
   enddo
 
@@ -1136,7 +1136,7 @@ endif
 
 ia = sign (1.d0, a(2))
 na = min (int (abs (a(2))), mpnw)
-if (na .eq. 0) then
+if (na == 0) then
   x(1) = mpnw
   x(2) = 1.d0
   x(3) = 0.d0
@@ -1216,7 +1216,7 @@ call mpmul (s0, s2, s1, mpnw1)
 
 !   Check if reduced argument is zero.  If so then cos = 1 and sin = 0.
 
-if (s1(2) .eq. 0.d0) then
+if (s1(2) == 0.d0) then
   s0(1) = mpnw1
   s0(2) = 1.d0
   s0(3) = 0.d0
@@ -1260,7 +1260,7 @@ do i1 = 1, itrmx
 !   Check for convergence of the series, and adjust working precision
 !   for the next term.
 
-  if (s1(2) .eq. 0.d0 .or. s1(3) < s0(3) - mpnw1) goto 110
+  if (s1(2) == 0.d0 .or. s1(3) < s0(3) - mpnw1) goto 110
   mpnw2 = min (max (mpnw1 + int (s1(3) - s0(3)) + 1, 4), mpnw1)
 enddo
 
@@ -1515,7 +1515,7 @@ call mpsub (a, s2, s0, mpnw1)
 
 !   Check if the reduced argument is zero.
 
-if (s0(2) .eq. 0.d0) then
+if (s0(2) == 0.d0) then
   s0(1) = mpnw1
   s0(2) = 1.d0
   s0(3) = 0.d0
@@ -1549,7 +1549,7 @@ do j = 1, itrmx
 !   Check for convergence of the series, and adjust working precision
 !   for the next term.
 
-  if (s2(2) .eq. 0.d0 .or. s2(3) < s0(3) - mpnw1) goto 100
+  if (s2(2) == 0.d0 .or. s2(3) < s0(3) - mpnw1) goto 100
   mpnw2 = min (max (mpnw1 + int (s2(3) - s0(3)) + 1, 4), mpnw1)
 enddo
 
@@ -1695,7 +1695,7 @@ do k = 0, mq
   call mpmul (s3, s1, s2, mpnw1) 
   call mpadd (s3, s2, s1, mpnw1) 
   call mpeq (s1, s3, mpnw1)
-  if (k .eq. mq - nit .and. iq .eq. 0) then
+  if (k == mq - nit .and. iq == 0) then
     iq = 1
     goto 100
   endif
@@ -1789,7 +1789,7 @@ endif
 ia = sign (1.d0, a(2))
 na = min (int (abs (a(2))), mpnw)
 
-if (ia .lt. 0 .or. na .eq. 0) then
+if (ia < 0 .or. na == 0) then
   write (mpldb, 2)
 2 format ('*** MPLOG: Argument is less than or equal to zero.')
   call mpabrt (50)
@@ -1879,7 +1879,7 @@ do k = 0, mq
   call mpdiv (s1, s0, s2, mpnw1) 
   call mpadd (s3, s2, s1, mpnw1) 
   call mpeq (s1, s3, mpnw1)
-  if (k .eq. mq - nit .and. iq .eq. 0) then
+  if (k == mq - nit .and. iq == 0) then
     iq = 1
     goto 110
   endif
@@ -1931,7 +1931,7 @@ endif
 ia = sign (1.d0, a(2))
 na = min (int (abs (a(2))), mpnw)
 
-if (ia .lt. 0 .or. na .eq. 0) then
+if (ia < 0 .or. na == 0) then
   write (mpldb, 2)
 2 format ('*** MPLOGX: Argument is less than or equal to zero.')
   call mpabrt (50)
